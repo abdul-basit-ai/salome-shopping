@@ -7,7 +7,7 @@
 
   <style>
     @font-face {
-      font-family: 'Maripeich El Ultimo';
+      font-family: 'Marpeich El Utimo';
       src: url('fonts/Maripeich el Último.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
@@ -27,7 +27,7 @@
       --text: #1f1f1f;
       --muted: #616161;
       --line: rgba(0,0,0,0.08);
-      --accent: #7db87a;
+      --accent: #d86d52;
       --accent-2: #8da882;
       --shadow: 0 14px 36px rgba(0,0,0,0.08);
       --tag: rgba(17,17,17,0.94);
@@ -41,7 +41,7 @@
       --text: #f5f2eb;
       --muted: #c2beb5;
       --line: rgba(255,255,255,0.08);
-      --accent: #a7c796;
+      --accent: #f09a7f;
       --accent-2: #a7c796;
       --shadow: 0 14px 36px rgba(0,0,0,0.28);
       --tag: rgba(255,255,255,0.12);
@@ -49,8 +49,8 @@
     }
 
     body {
-      font-family: 'Maripeich El Ultimo', cursive, sans-serif;
-      background: radial-gradient(circle at top left, rgba(125,184,122,0.08), transparent 26%),
+      font-family: 'Marpeich El Utimo', cursive, sans-serif;
+      background: radial-gradient(circle at top left, rgba(216,109,82,0.08), transparent 26%),
                   radial-gradient(circle at bottom right, rgba(141,168,130,0.08), transparent 25%),
                   var(--bg);
       color: var(--text);
@@ -65,9 +65,9 @@
       pointer-events: none;
       z-index: -1;
       background-image:
-        radial-gradient(circle at 10% 16%, rgba(125,184,122,0.10) 0 2px, transparent 2px),
+        radial-gradient(circle at 10% 16%, rgba(216,109,82,0.10) 0 2px, transparent 2px),
         radial-gradient(circle at 84% 22%, rgba(141,168,130,0.12) 0 2px, transparent 2px),
-        radial-gradient(circle at 18% 80%, rgba(125,184,122,0.08) 0 2px, transparent 2px),
+        radial-gradient(circle at 18% 80%, rgba(216,109,82,0.08) 0 2px, transparent 2px),
         radial-gradient(circle at 76% 74%, rgba(141,168,130,0.10) 0 2px, transparent 2px);
       background-size: 240px 240px, 260px 260px, 280px 280px, 220px 220px;
       opacity: 0.9;
@@ -85,11 +85,11 @@
     nav {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 12px 18px;
+      padding: 10px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
@@ -97,24 +97,25 @@
     .nav-tools {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
     .nav-links a {
       text-decoration: none;
       color: var(--text);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 500;
       position: relative;
       transition: color 0.2s ease;
+      white-space: nowrap;
     }
 
     .nav-links a::after {
       content: "";
       position: absolute;
       left: 0;
-      bottom: -5px;
+      bottom: -4px;
       width: 0;
       height: 1.5px;
       background: var(--accent);
@@ -132,11 +133,11 @@
     .switch-group {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 4px;
+      padding: 3px;
       box-shadow: var(--shadow);
     }
 
@@ -144,13 +145,13 @@
       border: none;
       background: transparent;
       color: var(--text);
-      padding: 8px 12px;
+      padding: 6px 10px;
       border-radius: 999px;
       cursor: pointer;
-      font-size: 0.86rem;
+      font-size: 0.8rem;
       font-weight: 600;
       transition: all 0.25s ease;
-      font-family: 'Maripeich El Ultimo', cursive, sans-serif;
+      font-family: 'Marpeich El Utimo', cursive, sans-serif;
     }
 
     .switch-btn.active {
@@ -161,7 +162,7 @@
     .hero {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 44px 20px 28px;
+      padding: 34px 16px 20px;
       text-align: center;
     }
 
@@ -169,8 +170,8 @@
       position: relative;
       background: linear-gradient(135deg, var(--paper), rgba(255,255,255,0.28));
       border: 1px solid var(--line);
-      border-radius: 30px;
-      padding: 42px 22px 34px;
+      border-radius: 26px;
+      padding: 34px 18px 28px;
       box-shadow: var(--shadow);
       overflow: hidden;
     }
@@ -203,16 +204,16 @@
 
     .eyebrow {
       display: inline-block;
-      font-family: 'Maripeich El Ultimo', cursive, sans-serif;
-      font-size: 1.2rem;
+      font-family: 'Marpeich El Utimo', cursive, sans-serif;
+      font-size: 1.1rem;
       color: var(--accent);
       margin-bottom: 6px;
       letter-spacing: 0.04em;
     }
 
     .hero h1 {
-      font-family: 'Maripeich El Ultimo', cursive, sans-serif;
-      font-size: clamp(2.8rem, 6vw, 5.4rem);
+      font-family: 'Marpeich El Utimo', cursive, sans-serif;
+      font-size: clamp(2.4rem, 6vw, 5.4rem);
       line-height: 0.95;
       margin-bottom: 10px;
       font-weight: 700;
@@ -222,21 +223,21 @@
       max-width: 720px;
       margin: 0 auto;
       color: var(--muted);
-      font-size: 1rem;
+      font-size: 0.98rem;
     }
 
     section {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 54px 20px;
+      padding: 46px 16px;
     }
 
     .section-title {
       text-align: center;
-      font-family: 'Maripeich El Ultimo', cursive, sans-serif;
-      font-size: clamp(2.3rem, 4vw, 4rem);
+      font-family: 'Marpeich El Utimo', cursive, sans-serif;
+      font-size: clamp(2.1rem, 4vw, 4rem);
       color: var(--text);
-      margin-bottom: 26px;
+      margin-bottom: 24px;
     }
 
     .section-title span {
@@ -251,7 +252,7 @@
       bottom: 8px;
       width: 80%;
       height: 10px;
-      background: rgba(125,184,122,0.22);
+      background: rgba(216,109,82,0.16);
       z-index: -1;
       border-radius: 999px;
     }
@@ -260,7 +261,7 @@
       position: relative;
       display: grid;
       grid-template-columns: 1.12fr 0.88fr;
-      gap: 26px;
+      gap: 24px;
       align-items: start;
     }
 
@@ -276,13 +277,14 @@
     .image-card {
       position: absolute;
       overflow: hidden;
-      border-radius: 26px;
+      border-radius: 24px;
       background: var(--bg-2);
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
     }
 
-    .image-card img {
+    .image-card img,
+    .video-card video {
       width: 100%;
       height: 100%;
       display: block;
@@ -301,6 +303,7 @@
       font-weight: 700;
       letter-spacing: 0.03em;
       backdrop-filter: blur(10px);
+      z-index: 3;
     }
 
     body.dark .price-tag {
@@ -339,47 +342,43 @@
       z-index: 2;
     }
 
-    .small-gallery {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      margin: 24px 0 0;
-      flex-wrap: wrap;
-    }
-
-    .small-gallery .gallery-card {
-      width: 220px;
-      border-radius: 18px;
+    .video-card {
+      margin: 24px auto 0;
+      max-width: 520px;
+      border-radius: 20px;
       overflow: hidden;
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
       background: var(--bg-2);
     }
 
-    .small-gallery img {
+    .video-card video {
       width: 100%;
+      height: auto;
       display: block;
+      max-height: 420px;
+      object-fit: cover;
     }
 
     .info-card {
       background: var(--paper);
       border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 24px;
+      border-radius: 26px;
+      padding: 22px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(10px);
       position: relative;
     }
 
     .hand-note {
-      font-family: 'Maripeich El Ultimo', cursive, sans-serif;
+      font-family: 'Marpeich El Utimo', cursive, sans-serif;
       color: var(--accent);
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       margin-bottom: 8px;
     }
 
     .info-card h3 {
-      font-size: 1.08rem;
+      font-size: 1.02rem;
       margin-bottom: 14px;
       color: var(--text);
       letter-spacing: 0.02em;
@@ -461,13 +460,13 @@
     .about-layout {
       display: grid;
       grid-template-columns: 0.92fr 1.08fr;
-      gap: 26px;
+      gap: 24px;
       align-items: center;
     }
 
     .about-image {
       overflow: hidden;
-      border-radius: 28px;
+      border-radius: 26px;
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
       background: var(--bg-2);
@@ -487,9 +486,9 @@
 
     footer {
       text-align: center;
-      padding: 24px 20px 40px;
+      padding: 24px 16px 34px;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
     [data-lang-content] {
@@ -533,25 +532,75 @@
 
     @media (max-width: 700px) {
       nav {
+        padding: 8px 10px;
         justify-content: center;
+        gap: 8px;
       }
 
       .nav-links,
       .nav-tools {
         justify-content: center;
+        gap: 8px;
+      }
+
+      .nav-links a {
+        font-size: 0.78rem;
+      }
+
+      .switch-btn {
+        padding: 5px 8px;
+        font-size: 0.72rem;
       }
 
       .hero {
-        padding-top: 26px;
+        padding: 18px 10px 14px;
       }
 
       .hero-inner {
-        padding: 30px 16px 26px;
+        padding: 22px 12px 18px;
+        border-radius: 20px;
       }
 
-      .small-gallery .gallery-card {
-        width: 100%;
-        max-width: 260px;
+      .eyebrow {
+        font-size: 0.95rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 8vw, 3.2rem);
+      }
+
+      .hero p {
+        font-size: 0.88rem;
+      }
+
+      section {
+        padding: 34px 10px;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 8vw, 2.8rem);
+        margin-bottom: 18px;
+      }
+
+      .info-card {
+        padding: 16px;
+        border-radius: 20px;
+      }
+
+      .video-card {
+        margin-top: 18px;
+        border-radius: 16px;
+      }
+
+      .price-tag {
+        top: 10px;
+        right: 10px;
+        padding: 7px 10px;
+        font-size: 0.8rem;
+      }
+
+      .about-image {
+        border-radius: 20px;
       }
     }
   </style>
@@ -638,13 +687,11 @@
           </ul>
         </div>
 
-        <div class="small-gallery">
-          <div class="gallery-card">
-            <img src="images/shirt-front-only.jpg" alt="Shirt front only">
-          </div>
-          <div class="gallery-card">
-            <img src="images/shirt-back-only.jpg" alt="Shirt back only">
-          </div>
+        <div class="video-card">
+          <video autoplay muted loop playsinline>
+            <source src="videos/shirt-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </div>
