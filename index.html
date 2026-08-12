@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Cormorant+Garamond:wght@500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -19,50 +19,41 @@
 
     :root {
       --bg: #fcfaf6;
-      --paper: rgba(255,255,255,0.75);
+      --bg-2: #f7f1e8;
+      --paper: rgba(255,255,255,0.74);
       --text: #1f1f1f;
-      --muted: #666;
+      --muted: #616161;
       --line: rgba(0,0,0,0.08);
-      --accent: #de6f52;
-      --accent-soft: #f2c7b8;
-      --sage: #b8c9a3;
-      --blue: #bfd7ea;
-      --cream: #f6efdf;
-      --mint: #c9dfc3;
-      --tag: #111;
+      --accent: #d86d52;
+      --accent-2: #8da882;
+      --shadow: 0 14px 36px rgba(0,0,0,0.08);
+      --tag: rgba(17,17,17,0.94);
+      --nav: rgba(252,250,246,0.84);
+    }
+
+    body.dark {
+      --bg: #121212;
+      --bg-2: #1b1b1b;
+      --paper: rgba(34,34,34,0.82);
+      --text: #f5f2eb;
+      --muted: #c2beb5;
+      --line: rgba(255,255,255,0.08);
+      --accent: #f09a7f;
+      --accent-2: #a7c796;
+      --shadow: 0 14px 36px rgba(0,0,0,0.28);
+      --tag: rgba(255,255,255,0.12);
+      --nav: rgba(18,18,18,0.82);
     }
 
     body {
       font-family: 'Space Grotesk', sans-serif;
-      background: var(--bg);
+      background: radial-gradient(circle at top left, rgba(216,109,82,0.08), transparent 26%),
+                  radial-gradient(circle at bottom right, rgba(141,168,130,0.08), transparent 25%),
+                  var(--bg);
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
-      position: relative;
-    }
-
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      z-index: -2;
-      filter: blur(40px);
-      opacity: 0.18;
-    }
-
-    body::before {
-      top: 8%;
-      left: -90px;
-      background: #ffd8c8;
-    }
-
-    body::after {
-      bottom: 10%;
-      right: -80px;
-      background: #dcebd2;
+      transition: background 0.35s ease, color 0.35s ease;
     }
 
     .page-deco {
@@ -71,11 +62,12 @@
       pointer-events: none;
       z-index: -1;
       background-image:
-        radial-gradient(circle at 12% 22%, rgba(222,111,82,0.08) 0 2px, transparent 2px),
-        radial-gradient(circle at 84% 18%, rgba(184,201,163,0.10) 0 2px, transparent 2px),
-        radial-gradient(circle at 78% 66%, rgba(191,215,234,0.12) 0 2px, transparent 2px),
-        radial-gradient(circle at 18% 78%, rgba(222,111,82,0.06) 0 2px, transparent 2px);
-      background-size: 220px 220px, 260px 260px, 240px 240px, 280px 280px;
+        radial-gradient(circle at 10% 16%, rgba(216,109,82,0.10) 0 2px, transparent 2px),
+        radial-gradient(circle at 84% 22%, rgba(141,168,130,0.12) 0 2px, transparent 2px),
+        radial-gradient(circle at 18% 80%, rgba(216,109,82,0.08) 0 2px, transparent 2px),
+        radial-gradient(circle at 76% 74%, rgba(141,168,130,0.10) 0 2px, transparent 2px);
+      background-size: 240px 240px, 260px 260px, 280px 280px, 220px 220px;
+      opacity: 0.9;
     }
 
     header {
@@ -83,31 +75,39 @@
       top: 0;
       z-index: 1000;
       backdrop-filter: blur(14px);
-      background: rgba(252, 250, 246, 0.82);
+      background: var(--nav);
       border-bottom: 1px solid var(--line);
     }
 
     nav {
-      max-width: 1180px;
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 12px 18px;
       display: flex;
-      justify-content: center;
-      gap: 28px;
-      padding: 14px 20px;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
-    nav a {
+    .nav-links,
+    .nav-tools {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
       text-decoration: none;
       color: var(--text);
       font-size: 0.95rem;
       font-weight: 500;
-      letter-spacing: 0.02em;
       position: relative;
-      transition: color 0.25s ease;
+      transition: color 0.2s ease;
     }
 
-    nav a::after {
+    .nav-links a::after {
       content: "";
       position: absolute;
       left: 0;
@@ -118,29 +118,56 @@
       transition: width 0.25s ease;
     }
 
-    nav a:hover {
+    .nav-links a:hover {
       color: var(--accent);
     }
 
-    nav a:hover::after {
+    .nav-links a:hover::after {
       width: 100%;
     }
 
+    .switch-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px;
+      box-shadow: var(--shadow);
+    }
+
+    .switch-btn {
+      border: none;
+      background: transparent;
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.86rem;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .switch-btn.active {
+      background: var(--text);
+      color: var(--bg);
+    }
+
     .hero {
-      max-width: 1180px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 52px 20px 34px;
+      padding: 44px 20px 28px;
       text-align: center;
-      position: relative;
     }
 
     .hero-inner {
-      background: linear-gradient(135deg, rgba(255,255,255,0.72), rgba(255,255,255,0.45));
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: 28px;
-      padding: 42px 24px 36px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.05);
       position: relative;
+      background: linear-gradient(135deg, var(--paper), rgba(255,255,255,0.28));
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 42px 22px 34px;
+      box-shadow: var(--shadow);
       overflow: hidden;
     }
 
@@ -149,96 +176,111 @@
       content: "";
       position: absolute;
       border-radius: 999px;
-      opacity: 0.35;
+      opacity: 0.28;
     }
 
     .hero-inner::before {
       width: 180px;
       height: 180px;
-      background: rgba(222,111,82,0.12);
-      top: -50px;
-      right: -30px;
+      background: var(--accent);
+      top: -58px;
+      right: -24px;
+      filter: blur(50px);
     }
 
     .hero-inner::after {
-      width: 130px;
-      height: 130px;
-      background: rgba(184,201,163,0.18);
-      bottom: -30px;
+      width: 160px;
+      height: 160px;
+      background: var(--accent-2);
+      bottom: -60px;
       left: -20px;
+      filter: blur(50px);
     }
 
     .eyebrow {
       display: inline-block;
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      font-family: 'Caveat', cursive;
+      font-size: 1.2rem;
       color: var(--accent);
-      margin-bottom: 12px;
-      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
     }
 
     .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.1rem, 5vw, 4.2rem);
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2.8rem, 6vw, 5.4rem);
       line-height: 0.95;
-      margin-bottom: 14px;
-      font-weight: 600;
+      margin-bottom: 10px;
+      font-weight: 700;
     }
 
     .hero p {
-      max-width: 700px;
+      max-width: 720px;
       margin: 0 auto;
       color: var(--muted);
       font-size: 1rem;
     }
 
     section {
-      max-width: 1180px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 56px 20px;
-      position: relative;
+      padding: 54px 20px;
     }
 
     .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 3vw, 3rem);
-      font-weight: 600;
       text-align: center;
-      margin-bottom: 30px;
-      color: #242424;
-      letter-spacing: 0.01em;
-      position: relative;
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2.3rem, 4vw, 4rem);
+      color: var(--text);
+      margin-bottom: 26px;
     }
 
-    .section-title::after {
+    .section-title span {
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title span::after {
       content: "";
-      display: block;
-      width: 72px;
-      height: 2px;
-      background: linear-gradient(to right, var(--accent), transparent);
-      margin: 10px auto 0;
+      position: absolute;
+      left: 10%;
+      bottom: 8px;
+      width: 80%;
+      height: 10px;
+      background: rgba(216,109,82,0.16);
+      z-index: -1;
       border-radius: 999px;
     }
 
-    .product-grid {
+    .overlap-layout {
+      position: relative;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 26px;
       align-items: start;
     }
 
-    .image-card {
+    .overlap-layout.reverse {
+      grid-template-columns: 0.88fr 1.12fr;
+    }
+
+    .stack-area {
       position: relative;
-      border-radius: 24px;
+      min-height: 720px;
+    }
+
+    .image-card {
+      position: absolute;
       overflow: hidden;
-      background: #f3efe7;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.08);
-      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 26px;
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
     }
 
     .image-card img {
       width: 100%;
+      height: 100%;
       display: block;
       object-fit: cover;
     }
@@ -247,59 +289,107 @@
       position: absolute;
       top: 16px;
       right: 16px;
-      background: rgba(17,17,17,0.92);
-      color: white;
-      font-size: 0.92rem;
-      font-weight: 700;
+      background: var(--tag);
+      color: #fff;
       padding: 10px 14px;
       border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 700;
       letter-spacing: 0.03em;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      backdrop-filter: blur(10px);
+    }
+
+    body.dark .price-tag {
+      color: var(--text);
+    }
+
+    .shirt-front {
+      left: 0;
+      top: 0;
+      width: 64%;
+      height: 470px;
+      z-index: 1;
+    }
+
+    .shirt-back {
+      right: 0;
+      top: 180px;
+      width: 52%;
+      height: 420px;
+      z-index: 2;
+    }
+
+    .bag-main {
+      right: 0;
+      top: 0;
+      width: 64%;
+      height: 470px;
+      z-index: 1;
+    }
+
+    .bag-second {
+      left: 0;
+      top: 190px;
+      width: 50%;
+      height: 380px;
+      z-index: 2;
     }
 
     .small-gallery {
       display: flex;
       justify-content: center;
       gap: 18px;
-      margin: 22px 0 26px;
+      margin: 24px 0 0;
       flex-wrap: wrap;
     }
 
-    .small-gallery .image-card {
+    .small-gallery .gallery-card {
       width: 220px;
       border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: var(--bg-2);
+    }
+
+    .small-gallery img {
+      width: 100%;
+      display: block;
     }
 
     .info-card {
       background: var(--paper);
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: 24px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
       padding: 24px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.05);
-      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    .hand-note {
+      font-family: 'Caveat', cursive;
+      color: var(--accent);
+      font-size: 1.4rem;
+      margin-bottom: 8px;
     }
 
     .info-card h3 {
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       margin-bottom: 14px;
-      color: #202020;
-      font-weight: 700;
+      color: var(--text);
       letter-spacing: 0.02em;
     }
 
     .details-list {
       list-style: none;
       display: grid;
-      gap: 10px;
-    }
-
-    .details-list li {
-      color: #444;
-      font-size: 0.98rem;
+      gap: 12px;
+      color: var(--muted);
     }
 
     .label {
-      color: #111;
+      color: var(--text);
       font-weight: 700;
     }
 
@@ -308,7 +398,7 @@
       gap: 10px;
       align-items: center;
       flex-wrap: wrap;
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     .swatch {
@@ -316,7 +406,7 @@
       height: 18px;
       border-radius: 50%;
       border: 1px solid rgba(0,0,0,0.12);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.36);
     }
 
     .swatch-cream { background: #f3ead9; }
@@ -324,135 +414,140 @@
     .swatch-blue  { background: #c8def0; }
     .swatch-green { background: #cfe3c6; }
 
-    .bag-layout {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 22px;
-      align-items: start;
-    }
-
-    .bag-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
-
-    .bag-stack .image-card:first-child {
-      margin-right: 50px;
-    }
-
-    .bag-stack .image-card:last-child {
-      margin-left: 50px;
-    }
-
-    .about-layout {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .about-layout .image-card img {
-      min-height: 420px;
-    }
-
-    .text-block p {
-      margin-bottom: 12px;
-      color: #444;
-    }
-
-    .pill-note {
-      display: inline-block;
-      background: rgba(184,201,163,0.22);
-      color: #2d3a24;
-      border: 1px solid rgba(184,201,163,0.35);
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-top: 6px;
-    }
-
-    .order-box,
-    .contact-box,
-    .delivery-box {
+    .single-box {
       max-width: 760px;
       margin: 0 auto;
       text-align: center;
     }
 
-    .order-box p,
-    .contact-box p,
-    .delivery-box p {
+    .single-box p {
+      color: var(--muted);
       margin-bottom: 10px;
-      color: #454545;
+    }
+
+    .pill-note {
+      display: inline-block;
+      margin-top: 8px;
+      background: rgba(141,168,130,0.18);
+      border: 1px solid rgba(141,168,130,0.34);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 600;
     }
 
     .button {
       display: inline-block;
-      margin-top: 12px;
+      margin-top: 14px;
       text-decoration: none;
       background: var(--text);
-      color: white;
+      color: var(--bg);
       padding: 12px 20px;
       border-radius: 999px;
-      font-weight: 600;
-      transition: transform 0.2s ease, background 0.2s ease;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
     .button:hover {
       transform: translateY(-1px);
-      background: var(--accent);
+      opacity: 0.92;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .about-image {
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: var(--bg-2);
+    }
+
+    .about-image img {
+      width: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .text-block p {
+      margin-bottom: 12px;
+      color: var(--muted);
     }
 
     footer {
-      margin-top: 20px;
-      padding: 26px 20px 40px;
       text-align: center;
-      color: #666;
+      padding: 24px 20px 40px;
+      color: var(--muted);
       font-size: 0.95rem;
     }
 
-    @media (max-width: 900px) {
-      .product-grid,
-      .bag-layout,
+    [data-lang-content] {
+      transition: opacity 0.2s ease;
+    }
+
+    @media (max-width: 980px) {
+      .overlap-layout,
+      .overlap-layout.reverse,
       .about-layout {
         grid-template-columns: 1fr;
       }
 
-      .bag-stack .image-card:first-child,
-      .bag-stack .image-card:last-child {
-        margin-left: 0;
-        margin-right: 0;
+      .stack-area {
+        min-height: auto;
+        display: grid;
+        gap: 18px;
       }
 
-      .about-layout .image-card img {
+      .image-card,
+      .shirt-front,
+      .shirt-back,
+      .bag-main,
+      .bag-second {
+        position: relative;
+        width: 100%;
+        height: auto;
+        top: auto;
+        left: auto;
+        right: auto;
+      }
+
+      .image-card img {
+        height: auto;
+      }
+
+      .about-image img {
         min-height: auto;
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 700px) {
       nav {
-        gap: 16px;
-        padding: 12px 16px;
+        justify-content: center;
+      }
+
+      .nav-links,
+      .nav-tools {
+        justify-content: center;
       }
 
       .hero {
-        padding-top: 30px;
+        padding-top: 26px;
       }
 
       .hero-inner {
-        padding: 32px 18px 28px;
+        padding: 30px 16px 26px;
       }
 
-      .small-gallery .image-card {
+      .small-gallery .gallery-card {
         width: 100%;
         max-width: 260px;
-      }
-
-      .price-tag {
-        font-size: 0.85rem;
-        padding: 8px 12px;
       }
     }
   </style>
@@ -462,129 +557,189 @@
 
   <header>
     <nav>
-      <a href="#home">Home</a>
-      <a href="#order">Order / Buy</a>
-      <a href="#about">Who We Are</a>
-      <a href="#delivery">Delivery</a>
-      <a href="#contact">Contact</a>
+      <div class="nav-links">
+        <a href="#home" data-en="Home" data-fr="Accueil">Home</a>
+        <a href="#order" data-en="Order / Buy" data-fr="Commander / Acheter">Order / Buy</a>
+        <a href="#about" data-en="Who We Are" data-fr="Qui Nous Sommes">Who We Are</a>
+        <a href="#delivery" data-en="Delivery" data-fr="Livraison">Delivery</a>
+        <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
+      </div>
+
+      <div class="nav-tools">
+        <div class="switch-group" aria-label="Language switcher">
+          <button class="switch-btn active" id="btn-en">EN</button>
+          <button class="switch-btn" id="btn-fr">FR</button>
+        </div>
+
+        <div class="switch-group" aria-label="Theme switcher">
+          <button class="switch-btn active" id="btn-light">Light</button>
+          <button class="switch-btn" id="btn-dark">Dark</button>
+        </div>
+      </div>
     </nav>
   </header>
 
   <section class="hero" id="home">
     <div class="hero-inner">
-      <span class="eyebrow">First Collection</span>
+      <div class="eyebrow" data-en="First Collection" data-fr="Première Collection">First Collection</div>
       <h1>Salome’s Shops</h1>
-      <p>
-        Welcome to our first collection — ONDES SAZ. A small launch with two special pieces:
-        a hand-illustrated T-shirt and tote bag.
+      <p
+        data-lang-content
+        data-en="Welcome to our first collection — ONDES SAZ. A small launch with two special pieces: a hand-illustrated T-shirt and tote bag."
+        data-fr="Bienvenue dans notre première collection — ONDES SAZ. Un petit lancement avec deux pièces spéciales : un T-shirt illustré à la main et un tote bag."
+      >
+        Welcome to our first collection — ONDES SAZ. A small launch with two special pieces: a hand-illustrated T-shirt and tote bag.
       </p>
     </div>
   </section>
 
   <section id="shirt">
-    <h2 class="section-title">T-Shirt</h2>
+    <h2 class="section-title"><span data-en="T-Shirt" data-fr="T-Shirt">T-Shirt</span></h2>
 
-    <div class="product-grid">
-      <div class="image-card">
-        <img src="images/shirt-front-worn.jpeg" alt="Wearing the shirt front side">
-        <div class="price-tag">€20</div>
+    <div class="overlap-layout">
+      <div class="stack-area">
+        <div class="image-card shirt-front">
+          <img src="images/shirt-front-worn.jpeg" alt="Wearing the shirt front side">
+          <div class="price-tag">€20</div>
+        </div>
+
+        <div class="image-card shirt-back">
+          <img src="images/shirt-back-worn..jpeg" alt="Wearing the shirt back side">
+          <div class="price-tag">€20</div>
+        </div>
       </div>
 
-      <div class="image-card">
-        <img src="images/shirt-back-worn..jpeg" alt="Wearing the shirt back side">
-        <div class="price-tag">€20</div>
-      </div>
-    </div>
+      <div>
+        <div class="info-card">
+          <div class="hand-note" data-en="Everyday wearable art" data-fr="Un art à porter au quotidien">Everyday wearable art</div>
+          <h3 data-en="T-Shirt Details" data-fr="Détails du T-Shirt">T-Shirt Details</h3>
+          <ul class="details-list">
+            <li>
+              <span class="label" data-en="Material:" data-fr="Matière :">Material:</span>
+              <span data-lang-content data-en="100% cotton, heavy weight, oversized fit" data-fr="100% coton, grammage épais, coupe oversize">100% cotton, heavy weight, oversized fit</span>
+            </li>
+            <li>
+              <span class="label" data-en="Sizes:" data-fr="Tailles :">Sizes:</span>
+              <span>S, M, L, XL</span>
+            </li>
+            <li>
+              <span class="label" data-en="Colors:" data-fr="Couleurs :">Colors:</span>
+              <div class="color-swatches" aria-label="Available colors">
+                <span class="swatch swatch-cream" title="Creme"></span>
+                <span class="swatch swatch-white" title="White"></span>
+                <span class="swatch swatch-blue" title="Light Blue"></span>
+                <span class="swatch swatch-green" title="Light Green"></span>
+              </div>
+            </li>
+          </ul>
+        </div>
 
-    <div class="small-gallery">
-      <div class="image-card">
-        <img src="images/shirt-front-only.jpg" alt="Shirt front only">
-      </div>
-      <div class="image-card">
-        <img src="images/shirt-back-only.jpg" alt="Shirt back only">
-      </div>
-    </div>
-
-    <div class="info-card" style="max-width: 760px; margin: 0 auto;">
-      <h3>T-Shirt Details</h3>
-      <ul class="details-list">
-        <li><span class="label">Material:</span> 100% cotton, heavy weight, oversized fit</li>
-        <li><span class="label">Sizes:</span> S, M, L, XL</li>
-        <li>
-          <span class="label">Colors:</span>
-          <div class="color-swatches" aria-label="Available colors">
-            <span class="swatch swatch-cream" title="Creme"></span>
-            <span class="swatch swatch-white" title="White"></span>
-            <span class="swatch swatch-blue" title="Light Blue"></span>
-            <span class="swatch swatch-green" title="Light Green"></span>
+        <div class="small-gallery">
+          <div class="gallery-card">
+            <img src="images/shirt-front-only.jpg" alt="Shirt front only">
           </div>
-        </li>
-      </ul>
+          <div class="gallery-card">
+            <img src="images/shirt-back-only.jpg" alt="Shirt back only">
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="bag">
-    <h2 class="section-title">Bag</h2>
+    <h2 class="section-title"><span data-en="Bag" data-fr="Sac">Bag</span></h2>
 
-    <div class="bag-layout">
-      <div class="bag-stack">
-        <div class="image-card">
+    <div class="overlap-layout reverse">
+      <div>
+        <div class="info-card">
+          <div class="hand-note" data-en="Light, practical, illustrated" data-fr="Léger, pratique, illustré">Light, practical, illustrated</div>
+          <h3 data-en="Bag Details" data-fr="Détails du Sac">Bag Details</h3>
+          <ul class="details-list">
+            <li>
+              <span class="label" data-en="Type:" data-fr="Type :">Type:</span>
+              <span data-lang-content data-en="Cotton tote bag" data-fr="Tote bag en coton">Cotton tote bag</span>
+            </li>
+            <li>
+              <span class="label" data-en="Material:" data-fr="Matière :">Material:</span>
+              <span data-lang-content data-en="Durable canvas cotton" data-fr="Toile de coton résistante">Durable canvas cotton</span>
+            </li>
+            <li>
+              <span class="label" data-en="Colors:" data-fr="Couleurs :">Colors:</span>
+              <div class="color-swatches" aria-label="Available colors">
+                <span class="swatch swatch-cream" title="Creme"></span>
+                <span class="swatch swatch-blue" title="Light Blue"></span>
+                <span class="swatch swatch-green" title="Light Green"></span>
+              </div>
+            </li>
+            <li>
+              <span class="label" data-en="Use:" data-fr="Usage :">Use:</span>
+              <span data-lang-content data-en="Perfect for daily life — shopping, books, markets, essentials" data-fr="Parfait pour le quotidien — courses, livres, marchés, essentiels">Perfect for daily life — shopping, books, markets, essentials</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stack-area">
+        <div class="image-card bag-main">
           <img src="images/bag-worn.jpeg" alt="Wearing the bag">
           <div class="price-tag">€15</div>
         </div>
 
-        <div class="image-card">
+        <div class="image-card bag-second">
           <img src="images/bag-only.jpeg" alt="Bag only">
           <div class="price-tag">€15</div>
         </div>
-      </div>
-
-      <div class="info-card">
-        <h3>Bag Details</h3>
-        <ul class="details-list">
-          <li><span class="label">Type:</span> Cotton tote bag</li>
-          <li><span class="label">Material:</span> Durable canvas cotton</li>
-          <li>
-            <span class="label">Colors:</span>
-            <div class="color-swatches" aria-label="Available colors">
-              <span class="swatch swatch-cream" title="Creme"></span>
-              <span class="swatch swatch-blue" title="Light Blue"></span>
-              <span class="swatch swatch-green" title="Light Green"></span>
-            </div>
-          </li>
-          <li><span class="label">Use:</span> Perfect for daily life — shopping, books, markets, essentials</li>
-        </ul>
       </div>
     </div>
   </section>
 
   <section id="order">
-    <h2 class="section-title">Order / Buy</h2>
-    <div class="info-card order-box">
-      <p>You can order by email or Instagram.</p>
+    <h2 class="section-title"><span data-en="Order / Buy" data-fr="Commander / Acheter">Order / Buy</span></h2>
+    <div class="info-card single-box">
+      <p data-lang-content data-en="You can order by email or Instagram." data-fr="Vous pouvez commander par e-mail ou Instagram.">You can order by email or Instagram.</p>
       <p><strong>Email:</strong> salome.saez.P@gmail.com</p>
       <p><strong>Instagram:</strong> @sazarchi</p>
-      <p>Please send the product name, size (for T-shirt), color, quantity, and your delivery address.</p>
-      <p class="pill-note">Delivery available across Europe — €5 flat shipping fee</p>
+      <p
+        data-lang-content
+        data-en="Please send the product name, size (for T-shirt), color, quantity, and your delivery address."
+        data-fr="Merci d’envoyer le nom du produit, la taille (pour le T-shirt), la couleur, la quantité et votre adresse de livraison."
+      >
+        Please send the product name, size (for T-shirt), color, quantity, and your delivery address.
+      </p>
+      <p class="pill-note" data-lang-content data-en="Delivery available across Europe — €5 flat shipping fee" data-fr="Livraison disponible en Europe — frais fixes de 5 €">
+        Delivery available across Europe — €5 flat shipping fee
+      </p>
       <br>
-      <a class="button" href="mailto:salome.saez.P@gmail.com">Order by Email</a>
+      <a class="button" href="mailto:salome.saez.P@gmail.com" data-en="Order by Email" data-fr="Commander par E-mail">Order by Email</a>
     </div>
   </section>
 
   <section id="about">
-    <h2 class="section-title">Who We Are</h2>
+    <h2 class="section-title"><span data-en="Who We Are" data-fr="Qui Nous Sommes">Who We Are</span></h2>
     <div class="about-layout">
-      <div class="image-card">
+      <div class="about-image">
         <img src="images/your-photo.jpeg" alt="Photo of founder">
       </div>
       <div class="info-card text-block">
-        <p>
+        <p
+          data-lang-content
+          data-en="Hi, I’m Salome. ONDES SAZ is my first collection — a personal project born from my love for drawing, storytelling, and wearable art."
+          data-fr="Bonjour, moi c’est Salome. ONDES SAZ est ma première collection — un projet personnel né de mon amour pour le dessin, la narration et l’art à porter."
+        >
           Hi, I’m Salome. ONDES SAZ is my first collection — a personal project born from my love for drawing, storytelling, and wearable art.
         </p>
-        <p>
+        <p
+          data-lang-content
+          data-en="The illustration was inspired by the feeling of carrying an entire inner world with you — the faces, shapes, and creatures that live in your imagination, flowing outward like waves."
+          data-fr="L’illustration est inspirée par l’idée de porter avec soi tout un monde intérieur — les visages, les formes et les créatures qui vivent dans l’imagination et se déploient comme des vagues."
+        >
           The illustration was inspired by the feeling of carrying an entire inner world with you — the faces, shapes, and creatures that live in your imagination, flowing outward like waves.
         </p>
-        <p>
+        <p
+          data-lang-content
+          data-en="Every piece is hand-designed and made to be worn in everyday life. This is just the beginning."
+          data-fr="Chaque pièce est dessinée à la main et pensée pour être portée au quotidien. Ce n’est que le début."
+        >
           Every piece is hand-designed and made to be worn in everyday life. This is just the beginning.
         </p>
       </div>
@@ -592,29 +747,82 @@
   </section>
 
   <section id="delivery">
-    <h2 class="section-title">Delivery</h2>
-    <div class="info-card delivery-box">
-      <p><strong>Delivery across Europe — €5 flat rate.</strong></p>
-      <p>
+    <h2 class="section-title"><span data-en="Delivery" data-fr="Livraison">Delivery</span></h2>
+    <div class="info-card single-box">
+      <p data-lang-content data-en="Delivery across Europe — €5 flat rate." data-fr="Livraison en Europe — tarif fixe de 5 €."><strong>Delivery across Europe — €5 flat rate.</strong></p>
+      <p
+        data-lang-content
+        data-en="Orders are shipped within Europe only. Delivery typically takes 5–10 business days depending on your location."
+        data-fr="Les commandes sont expédiées uniquement en Europe. La livraison prend généralement entre 5 et 10 jours ouvrés selon votre localisation."
+      >
         Orders are shipped within Europe only. Delivery typically takes 5–10 business days depending on your location.
       </p>
-      <p>
+      <p
+        data-lang-content
+        data-en="For exact estimates, contact us by email or Instagram."
+        data-fr="Pour une estimation plus précise, contactez-nous par e-mail ou Instagram."
+      >
         For exact estimates, contact us by email or Instagram.
       </p>
     </div>
   </section>
 
   <section id="contact">
-    <h2 class="section-title">Contact</h2>
-    <div class="info-card contact-box">
+    <h2 class="section-title"><span data-en="Contact" data-fr="Contact">Contact</span></h2>
+    <div class="info-card single-box">
       <p><strong>Email:</strong> salome.saez.P@gmail.com</p>
       <p><strong>Instagram:</strong> @sazarchi</p>
-      <p><strong>Shop:</strong> Salome's Shops</p>
+      <p><strong data-en="Shop:" data-fr="Boutique :">Shop:</strong> Salome's Shops</p>
     </div>
   </section>
 
   <footer>
-    <p>© 2026 Salome's Shops — ONDES SAZ Collection</p>
+    <p data-lang-content data-en="© 2026 Salome's Shops — ONDES SAZ Collection" data-fr="© 2026 Salome's Shops — Collection ONDES SAZ">
+      © 2026 Salome's Shops — ONDES SAZ Collection
+    </p>
   </footer>
+
+  <script>
+    const btnEn = document.getElementById('btn-en');
+    const btnFr = document.getElementById('btn-fr');
+    const btnLight = document.getElementById('btn-light');
+    const btnDark = document.getElementById('btn-dark');
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-lang-content]').forEach(el => {
+        const value = el.getAttribute(`data-${lang}`);
+        if (value) el.innerHTML = value;
+      });
+
+      document.querySelectorAll('[data-en][data-fr]').forEach(el => {
+        const value = el.getAttribute(`data-${lang}`);
+        if (value) el.textContent = value;
+      });
+
+      btnEn.classList.toggle('active', lang === 'en');
+      btnFr.classList.toggle('active', lang === 'fr');
+      localStorage.setItem('site-language', lang);
+    }
+
+    function setTheme(theme) {
+      document.body.classList.toggle('dark', theme === 'dark');
+      btnLight.classList.toggle('active', theme === 'light');
+      btnDark.classList.toggle('active', theme === 'dark');
+      localStorage.setItem('site-theme', theme);
+    }
+
+    btnEn.addEventListener('click', () => setLanguage('en'));
+    btnFr.addEventListener('click', () => setLanguage('fr'));
+    btnLight.addEventListener('click', () => setTheme('light'));
+    btnDark.addEventListener('click', () => setTheme('dark'));
+
+    const savedLang = localStorage.getItem('site-language') || 'en';
+    const savedTheme = localStorage.getItem('site-theme') || 'light';
+
+    setLanguage(savedLang);
+    setTheme(savedTheme);
+  </script>
 </body>
 </html>
